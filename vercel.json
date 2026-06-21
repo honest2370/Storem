@@ -1,0 +1,33 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/api/countries", "destination": "/api/countries" },
+    { "source": "/api/fees", "destination": "/api/fees" },
+    { "source": "/api/pay", "destination": "/api/pay" },
+    { "source": "/api/otp", "destination": "/api/otp" },
+    { "source": "/api/status/:id", "destination": "/api/status/:id" },
+    { "source": "/api/webhook", "destination": "/api/webhook" },
+    { "source": "/api/wallet/:id", "destination": "/api/wallet/:id" },
+    { "source": "/api/transactions/:id", "destination": "/api/transactions/:id" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
+    }
+  ]
+}
